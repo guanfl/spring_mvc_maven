@@ -8,8 +8,4 @@
 		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		<typeAlias type="com.spring.mvc.entity.Student" alias="Student"/>
 	</typeAliases>
-	
-	<mappers>
-		<mapper resource="com/spring/mvc/entity/student.xml"/>
-	</mappers>
 </configuration>

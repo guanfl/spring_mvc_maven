@@ -6,6 +6,10 @@
 */
 package com.spring.mvc.action;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +21,40 @@ import org.springframework.web.servlet.ModelAndView;
 public class StudentAction {
 
     @RequestMapping(value="/hello",method=RequestMethod.GET)
-    public ModelAndView helloStudent(Model model) {
+    public ModelAndView helloStudent(HttpServletRequest request,HttpServletResponse response, Model model) {
+        ServletContext context = request.getServletContext();
+        String contextPath = context.getContextPath(); 
+        String realPath = context.getRealPath("/");
+        
+        System.out.println("contextpath>>>>" + contextPath);
+        System.out.println("realPath>>>>" + realPath);
+        
         // 1、收集参数
         // 2、绑定参数到命令对象
         // 3、调用业务对象
         // 4、选择下一个页面
         ModelAndView mv = new ModelAndView();
         mv.addObject("message","你好，同学！");
+        mv.setViewName("hello");
+        System.out.println("================>");
+        return mv;
+    }
+    
+    @RequestMapping(value="/v2/bye",method=RequestMethod.GET)
+    public ModelAndView byeStudent(HttpServletRequest request,HttpServletResponse response, Model model) {
+        /*ServletContext context = request.getServletContext();
+        String contextPath = context.getContextPath(); 
+        String realPath = context.getRealPath("/");
+        
+        System.out.println("contextpath>>>>" + contextPath);
+        System.out.println("realPath>>>>" + realPath);*/
+        
+        // 1、收集参数
+        // 2、绑定参数到命令对象
+        // 3、调用业务对象
+        // 4、选择下一个页面
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("message","再见，同学！");
         mv.setViewName("hello");
         System.out.println("================>");
         return mv;

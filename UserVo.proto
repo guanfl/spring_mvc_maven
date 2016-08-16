@@ -1,0 +1,11 @@
+package com.spring.mvc.entity.proto;  
+  
+option java_package = "com.spring.mvc.entity.proto";  
+option java_outer_classname="UserVoProto";  
+  
+message UserVo{  
+    optional string name = 1;  
+    optional int32 age = 2;  
+    optional int64 phone = 3;  
+    repeated com.spring.mvc.entity.proto.UserVo friends = 4;  
+}

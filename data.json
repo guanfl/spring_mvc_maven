@@ -1,0 +1,35 @@
+[	{"value":2.33,"dimension":2,"batch":2013456,"pid":0,"datatime":1458639924459,"predicttime":null},
+	{"value":2.33,"dimension":2,"batch":2013456,"pid":0,"datatime":1458639924459,"predicttime":null}]
+
+[{"predicttime":1458541841000,"datatime":1457539200000,"batch":2016031000,"dimension":1,"pid":2,"value":336.45948},
+{"predicttime":1458541841000,"datatime":1457539200000,"batch":2016031000,"dimension":2,"pid":2,"value":101.62446},
+{"predicttime":1458541841000,"datatime":1457539200000,"batch":2016031000,"dimension":3,"pid":2,"value":348.75189},
+{"predicttime":1458541841000,"datatime":1457539200000,"batch":2016031000,"dimension":4,"pid":2,"value":129.98738},
+{"predicttime":1458541841000,"datatime":1457539200000,"batch":2016031000,"dimension":5,"pid":2,"value":90.95632},
+{"predicttime":1458541841000,"datatime":1457712000000,"batch":2016031000,"dimension":1,"pid":2,"value":153.98496},
+{"predicttime":1458541841000,"datatime":1457712000000,"batch":2016031000,"dimension":2,"pid":2,"value":64.81584000000001},
+{"predicttime":1458541841000,"datatime":1457712000000,"batch":2016031000,"dimension":3,"pid":2,"value":155.14403},
+{"predicttime":1458541841000,"datatime":1457712000000,"batch":2016031000,"dimension":4,"pid":2,"value":75.93865999999998},
+{"predicttime":1458541841000,"datatime":1457712000000,"batch":2016031000,"dimension":5,"pid":2,"value":68.61172},
+{"predicttime":1458541841000,"datatime":1457625600000,"batch":2016031000,"dimension":1,"pid":2,"value":735.7489},
+{"predicttime":1458541841000,"datatime":1457625600000,"batch":2016031000,"dimension":2,"pid":2,"value":239.36264},
+{"predicttime":1458541841000,"datatime":1457625600000,"batch":2016031000,"dimension":3,"pid":2,"value":698.5752699999999},
+{"predicttime":1458541841000,"datatime":1457625600000,"batch":2016031000,"dimension":4,"pid":2,"value":270.87769},
+{"predicttime":1458541841000,"datatime":1457625600000,"batch":2016031000,"dimension":5,"pid":2,"value":251.00816}]
+
+
+[{"predicttime":"2016-03-21","datatime":"2016-03-10","batch":2016031000,"dimension":1,"pid":2,"value":336.45948},
+{"predicttime":"2016-03-21","datatime":"2016-03-10","batch":2016031000,"dimension":2,"pid":2,"value":101.62446},
+{"predicttime":"2016-03-21","datatime":"2016-03-10","batch":2016031000,"dimension":3,"pid":2,"value":348.75189},
+{"predicttime":"2016-03-21","datatime":"2016-03-10","batch":2016031000,"dimension":4,"pid":2,"value":129.98738},
+{"predicttime":"2016-03-21","datatime":"2016-03-10","batch":2016031000,"dimension":5,"pid":2,"value":90.95632},
+{"predicttime":"2016-03-21","datatime":"2016-03-12","batch":2016031000,"dimension":1,"pid":2,"value":153.98496},
+{"predicttime":"2016-03-21","datatime":"2016-03-12","batch":2016031000,"dimension":2,"pid":2,"value":64.81584000000001},
+{"predicttime":"2016-03-21","datatime":"2016-03-12","batch":2016031000,"dimension":3,"pid":2,"value":155.14403},
+{"predicttime":"2016-03-21","datatime":"2016-03-12","batch":2016031000,"dimension":4,"pid":2,"value":75.93865999999998},
+{"predicttime":"2016-03-21","datatime":"2016-03-12","batch":2016031000,"dimension":5,"pid":2,"value":68.61172},
+{"predicttime":"2016-03-21","datatime":"2016-03-11","batch":2016031000,"dimension":1,"pid":2,"value":735.7489},
+{"predicttime":"2016-03-21","datatime":"2016-03-11","batch":2016031000,"dimension":2,"pid":2,"value":239.36264},
+{"predicttime":"2016-03-21","datatime":"2016-03-11","batch":2016031000,"dimension":3,"pid":2,"value":698.5752699999999},
+{"predicttime":"2016-03-21","datatime":"2016-03-11","batch":2016031000,"dimension":4,"pid":2,"value":270.87769},
+{"predicttime":"2016-03-21","datatime":"2016-03-11","batch":2016031000,"dimension":5,"pid":2,"value":251.00816}]

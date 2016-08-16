@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite
+PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+"http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite>
+	<!-- url匹配规则 
+	<class-rule class="" method="matches" last="true"/>
+	
+	<rule>
+		<from>^/demo/api.do?method=getUser&amp;uid=(.*)$</from>
+		<to>/demo/api/user/$1</to>
+	</rule>
+	<rule>
+		<from>^/abc.do$</from>
+		<run class="" method="" neweachtime="false">
+			<init-param></init-param>
+		</run>
+		<to type="forward">/student/hello</to>
+	</rule>-->
+	<rule>
+		<from>^/abc.com/(\w+)$</from>
+		<to type="forward">/student/$1</to>
+	</rule>
+	<rule>
+		<from>^/ecar/api/(\w+)$</from>
+		<to type="forward">/student/$1</to>
+	</rule>
+	
+	<rule>
+		<from>^/ecar/api/sales/(\w+)$</from>
+		<to type="forward">/student/v2/$1</to>
+	</rule>
+</urlrewrite>

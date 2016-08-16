@@ -2,55 +2,146 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-			http://www.springframework.org/schema/context
-			http://www.springframework.org/schema/context/spring-context-4.0.xsd
 			http://www.springframework.org/schema/aop
 			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-			http://www.springframework.org/schema/jdbc
-			http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
 			http://www.springframework.org/schema/tx
-			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-	
-	<!-- 	<context:property-placeholder location="classpath:sysconfig/jdbc_config.properties" /> -->
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location">
-			<value>classpath:jdbc.properties</value>
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- <context:property-placeholder location="classpath:jdbc.properties" 
+		ignore-resource-not-found="true" file-encoding="UTF-8" ignore-unresolvable="true"/> -->
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean>
+	<!-- 配置自动扫描 注册Bean -->
+	<context:component-scan base-package="com.spring.mvc" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${read.driverClassName}" />
+		<property name="url" value="${read.url}" />
+		<property name="username" value="${read.username}" />
+		<property name="password" value="${read.password}" />
+		<property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+	</bean>
+
+	<!-- 配置数据源 -->
+	<!-- 配置读数据源 -->
+	<bean id="slaveDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${read.driverClassName}" />
+		<property name="url" value="${read.url}" />
+		<property name="username" value="${read.username}" />
+		<property name="password" value="${read.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+	</bean>
+	<!-- 配置写数据源 -->
+	<bean id="masterDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${write.driverClassName}" />
+		<property name="url" value="${write.url}" />
+		<property name="username" value="${write.username}" />
+		<property name="password" value="${write.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+	</bean>
+
+	<!-- 配置动态数据源 -->
+	<bean id="dynamicDataSource" class="com.spring.mvc.common.DynamicDataSource">
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
+		<!-- 配置多数据源 -->
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="master" value-ref="masterDataSource" />
+				<entry key="slave" value-ref="slaveDataSource" />
+			</map>
 		</property>
 	</bean>
-	<!-- 配置数据源 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${driverClassName}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${password}" />
-		<property name="maxActive" value="100" />
-		<property name="maxIdle" value="30" />
-		<property name="maxWait" value="1000" />
-		<property name="removeAbandoned" value="true" />
-		<property name="removeAbandonedTimeout" value="60" />
-	</bean>
-	
+
 	<!-- 配置MyBatis SessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="dataSource" ref="dataSource" /> -->
+		<property name="dataSource" ref="dynamicDataSource" />
 		<property name="configLocation" value="classpath:sqlmap.xml" />
+		<property name="mapperLocations" value="classpath:mappers/*.xml" />
 	</bean>
-	
-	<!-- 配置sqlSessionTemplate -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
-		<constructor-arg index="0" ref="sqlSessionFactory"/>
-	</bean>
-	
-	<!-- 配置自动扫描  注册Bean -->
-	<context:component-scan base-package="com.spring.mvc" />
-	
+
 	<!-- 配置spring-mybatis自动映射:扫描需要自动映射的Dao -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.spring.mvc.dao"/>
+		<property name="basePackage" value="com.spring.mvc.dao" />
 	</bean>
 	
-<!-- 	<bean id="service" class="com.spring.mvc.service.StudentService"/> -->
+	<!-- 定义事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dynamicDataSource" />
+	</bean>
+	
+	<!-- 定义事务策略 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!--定义查询方法都是只读的 -->
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<!-- 主库执行操作，事务传播行为定义为默认行为 -->
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<!--其他方法使用默认事务策略 -->
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 定义AOP切面处理器 -->
+	<bean id="dataSourceAspect" class="com.spring.mvc.common.DataSourceAspect" >
+		<!-- 指定事务策略 
+		<property name="txAdvice" ref="txAdvice"/>-->
+		<!-- 指定slave方法的前缀（非必须） -->
+		<property name="slaveMethodStart" value="select,query,find,get"/>
+	</bean>
+	
+	<aop:config>
+		<!-- 定义切面，所有的service的所有方法 -->
+		<aop:pointcut id="txPointcut" expression="execution(* com.spring.mvc.dao.*.*(..))" />
+		<!-- 应用事务策略到Service切面 
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>-->
+		<!-- 将切面应用到自定义的切面处理器上，-9999保证该切面优先级最高执行 -->
+		<aop:aspect ref="dataSourceAspect" order="-9999">
+			<aop:before method="before" pointcut-ref="txPointcut" />
+		</aop:aspect>
+	</aop:config>
+	
+	
+	<!-- 配置sqlSessionTemplate -->
+	<!-- <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" -->
+	<!-- scope="prototype"> -->
+	<!-- <constructor-arg index="0" ref="sqlSessionFactory" /> -->
+	<!-- </bean> -->
+	<!-- MapperScannerConfigurer实际是在解析加载bean阶段，这时候设置sqlSessionFactory 会导致提前初始化一些类，这时候PropertyPlaceHolderConfigurer还没来得及替换定义中的变量 
+		， 导致把表达式当作字符串复制 org.apache.commons.dbcp.SQLNestedException: Cannot load JDBC 
+		driver class '${read.driverClassName} -->
+	<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" /> -->
 </beans>

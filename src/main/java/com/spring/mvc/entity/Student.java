@@ -6,12 +6,15 @@
 */
 package com.spring.mvc.entity;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Student {
-	private int id;
+public class Student implements Serializable{
+    
+    private static final long serialVersionUID = 5655170335533783008L;
+    private int id;
 	private String name;
 	private Date brithday;
 	private double score;
