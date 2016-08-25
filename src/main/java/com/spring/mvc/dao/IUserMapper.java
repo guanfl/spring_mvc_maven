@@ -1,5 +1,7 @@
 package com.spring.mvc.dao;
 
+import java.util.List;
+
 import com.spring.mvc.entity.IUser;
 
 public interface IUserMapper {
@@ -14,4 +16,6 @@ public interface IUserMapper {
     int updateByPrimaryKeySelective(IUser record);
 
     int updateByPrimaryKey(IUser record);
+    
+    List<IUser> selectAllIUsers();
 }

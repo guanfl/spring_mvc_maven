@@ -2,10 +2,24 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<settings>
+		<setting name="logImpl" value="SLF4J" />
+		<!-- 字段为空时仍调用model的set方法或map的put方法 -->
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>
 	<typeAliases>
 		<typeAlias type="java.util.Map" alias="map" />
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		<typeAlias type="com.spring.mvc.entity.Student" alias="Student"/>
 	</typeAliases>
+	
+	<plugins>
+		<!-- 分页查询插件 -->
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql" />
+			<property name="reasonable" value="true" />
+		</plugin>
+	</plugins>
+	
 </configuration>

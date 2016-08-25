@@ -24,5 +24,7 @@
     <a href="acc/add.htm">新增用户</a><br/><br/>
     <a href="acc/delete.htm?id=123">删除用户</a><br/><br/>
     <a href="acc/edit.htm&id=123">编辑用户</a><br/><br/>
+    
+    <a href="xlsview/user_export">UserExcelExport</a><br/><br/>
   </body>
 </html>

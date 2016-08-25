@@ -7,6 +7,7 @@
 package com.spring.mvc.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -19,10 +20,77 @@ import com.google.gson.annotations.SerializedName;
 //还有一个deserialize 均是boolean值 一个是序列化另一个是反序列化
 //@SerializedName注解 : 是设置序列化之后字段的名称==>别名
 public class User /* implements Serializable */ {
+    
     @Expose
     private String username;
+    private String userName;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+
+    private int id;
     @Expose(serialize=false)
     private int age;
+    private int sex;
+    private Date created;
+    private String name;
+    private Date birthday;
+    private Date updated;
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+
+
     @Expose
     @SerializedName(value="Handsome")
     private List<String> list;
@@ -30,6 +98,8 @@ public class User /* implements Serializable */ {
     public User(String username, int age) {
         this.username = username;
         this.age = age;
+    }
+    public User() {
     }
 
     public String getUsername() {

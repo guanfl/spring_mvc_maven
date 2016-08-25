@@ -45,6 +45,7 @@
 		<property name="url" value="${read.url}" />
 		<property name="username" value="${read.username}" />
 		<property name="password" value="${read.password}" />
+		<property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}" />
 		<property name="initialSize" value="${jdbc.initialSize}" />
 		<property name="maxActive" value="${jdbc.maxActive}" />
 		<property name="maxIdle" value="${jdbc.maxIdle}" />
@@ -60,6 +61,7 @@
 		<property name="url" value="${write.url}" />
 		<property name="username" value="${write.username}" />
 		<property name="password" value="${write.password}" />
+		<property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}" />
 		<property name="initialSize" value="${jdbc.initialSize}" />
 		<property name="maxActive" value="${jdbc.maxActive}" />
 		<property name="maxIdle" value="${jdbc.maxIdle}" />
@@ -124,13 +126,14 @@
 	</bean>
 	
 	<aop:config>
-		<!-- 定义切面，所有的service的所有方法 -->
-		<aop:pointcut id="txPointcut" expression="execution(* com.spring.mvc.dao.*.*(..))" />
-		<!-- 应用事务策略到Service切面 
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>-->
+		<!-- 定义切面，所有的service的所有方法 
+		<aop:pointcut id="txPointcut" expression="execution(* com.spring.mvc.service.*.*(..))" />-->
+		<aop:pointcut id="rwPointcut" expression="execution(* com.spring.mvc.dao.*.*(..))" />
+		<!-- 应用事务策略到Service切面 -->
+		<aop:advisor pointcut="execution(* com.spring.mvc.service.*.*(..))" advice-ref="txAdvice"/>
 		<!-- 将切面应用到自定义的切面处理器上，-9999保证该切面优先级最高执行 -->
-		<aop:aspect ref="dataSourceAspect" order="-9999">
-			<aop:before method="before" pointcut-ref="txPointcut" />
+		<aop:aspect ref="dataSourceAspect"><!-- order="-9999" -->
+			<aop:before method="before" pointcut-ref="rwPointcut" />
 		</aop:aspect>
 	</aop:config>
 	
