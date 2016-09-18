@@ -8,19 +8,29 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<!-- 启动spring mvc自动扫描 -->
-	<context:component-scan base-package="com.spring.mvc.action,com.spring.mvc.web" />
-
+	<context:component-scan base-package="com.spring.mvc.action" />
 	<!-- 启动Spring mvc注解 -->
 	<!-- spring3.1以前版本中用 <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/> 
 		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/> -->
 
 	<!-- Spring3.1后，使用RequestMappingHandlerMapping和RequestMappingHandlerAdapter来代替 -->
-	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
-	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
-	<!-- mvc注解驱动 -->
-	<!-- <mvc:annotation-driven/> -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- mvc注解驱动 
+	<context:annotation-config />  
+	<mvc:default-servlet-handler />  -->
+	
+	<!-- swagger api 
+	<mvc:annotation-driven/>
+	<mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/"/>
+	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />-->
 	
 	<!-- 视图解析器 -->
 	<!-- <bean id="markerViewResolver"
@@ -34,16 +44,13 @@
 		<property name="order" value="1" />
 	</bean> -->
 
-	<bean id="jspViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
 <!-- 	<bean id="excelViewResolver" class="com.spring.mvc.views.ExcelView"/>
-	
 	<bean id="pdfViewResolver" class="com.spring.mvc.views.PDFView"/> -->
 
 	<!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -58,7 +65,7 @@
     
 	<!-- 配置消息MassageResolver -->
 
-
 	<!-- 静态资源访问（不拦截此目录下的东西的访问） -->
 	<!-- <mvc:resources location="/js/" mapping="/js/**" /> -->
+	
 </beans>

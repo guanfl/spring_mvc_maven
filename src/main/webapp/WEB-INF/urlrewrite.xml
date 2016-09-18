@@ -16,7 +16,7 @@ PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
 			<init-param></init-param>
 		</run>
 		<to type="forward">/student/hello</to>
-	</rule>-->
+	</rule>
 	<rule>
 		<from>^/abc.com/(\w+)$</from>
 		<to type="forward">/student/$1</to>
@@ -29,5 +29,5 @@ PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
 	<rule>
 		<from>^/ecar/api/sales/(\w+)$</from>
 		<to type="forward">/student/v2/$1</to>
-	</rule>
+	</rule>-->
 </urlrewrite>

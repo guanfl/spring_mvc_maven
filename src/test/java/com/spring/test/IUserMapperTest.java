@@ -60,8 +60,6 @@ public class IUserMapperTest extends BaseTest<IUserMapperTest> {
         for(IUser user : uList){
             System.out.println(user);
         }
-        
-        System.out.println("-------------------------------------------------------------------");
         System.out.println();
     }
     //properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,plugins?,environments?,databaseIdProvider?,mappers?)

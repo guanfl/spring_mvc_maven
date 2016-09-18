@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 			http://www.springframework.org/schema/aop
@@ -9,7 +10,8 @@
 			http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 			http://www.springframework.org/schema/context
-			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<!-- <context:property-placeholder location="classpath:jdbc.properties" 
 		ignore-resource-not-found="true" file-encoding="UTF-8" ignore-unresolvable="true"/> -->
@@ -20,9 +22,9 @@
 	</bean>
 	<!-- 配置自动扫描 注册Bean -->
 	<context:component-scan base-package="com.spring.mvc" />
-
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+	
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close" init-method="init" lazy-init="true">
 		<property name="driverClassName" value="${read.driverClassName}" />
 		<property name="url" value="${read.url}" />
 		<property name="username" value="${read.username}" />
@@ -39,8 +41,8 @@
 
 	<!-- 配置数据源 -->
 	<!-- 配置读数据源 -->
-	<bean id="slaveDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+	<bean id="slaveDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close" init-method="init" lazy-init="true">
 		<property name="driverClassName" value="${read.driverClassName}" />
 		<property name="url" value="${read.url}" />
 		<property name="username" value="${read.username}" />
@@ -55,8 +57,8 @@
 		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
 	</bean>
 	<!-- 配置写数据源 -->
-	<bean id="masterDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close" init-method="init" lazy-init="true">
 		<property name="driverClassName" value="${write.driverClassName}" />
 		<property name="url" value="${write.url}" />
 		<property name="username" value="${write.username}" />
@@ -136,7 +138,6 @@
 			<aop:before method="before" pointcut-ref="rwPointcut" />
 		</aop:aspect>
 	</aop:config>
-	
 	
 	<!-- 配置sqlSessionTemplate -->
 	<!-- <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" -->

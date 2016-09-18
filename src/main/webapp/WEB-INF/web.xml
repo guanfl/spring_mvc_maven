@@ -50,6 +50,7 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+
 	<!-- 在DispatcherServlet的初始化过程中，框架会在web应用的 WEB-INF文件夹下寻找名为[servlet-name]-servlet.xml 
 		的配置文件 -->
 	<servlet>
@@ -62,14 +63,33 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- <servlet> -->
-	<!-- <servlet-name>forwarding</servlet-name> -->
-	<!-- <servlet-class>com.spring.mvc.web.ForwardingServlet</servlet-class> -->
-	<!-- </servlet> -->
-
 	<servlet-mapping>
 		<servlet-name>spring-mvc</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+		<init-param>
+			<!-- 允许访问 -->
+			<param-name>allow</param-name>
+			<param-value>127.0.0.1,localhost</param-value>
+		</init-param>
+		<init-param>
+			<!-- 用户名 -->
+			<param-name>loginUsername</param-name>
+			<param-value>druid</param-value>
+		</init-param>
+		<init-param>
+			<!-- 密码 -->
+			<param-name>loginPassword</param-name>
+			<param-value>druid</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
