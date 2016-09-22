@@ -4,7 +4,7 @@
 * Copyrights 2016 guanfl All rights reserved.
 * Email : guanfl@163.com
 */
-package com.spring.mvc.util;
+package com.spring.mvc.iplocation;
 
 import java.io.IOException;
 import java.io.InputStream;
