@@ -22,7 +22,7 @@ public class StudentDaoTest {
 	@Test
 	public void testSelectStudents(){
 		System.out.println("test select student");
-		StudentService service = (StudentService)context.getBean("service");
+		StudentService service = context.getBean(StudentService.class);
 		List<Student> list = service.selectAllStudent();
 		System.out.println("SIZE : " + list.size());
 		for(Student s : list){
@@ -32,13 +32,13 @@ public class StudentDaoTest {
 	
 	@Test
 	public void testSelectStudentById(){
-		StudentService service = (StudentService)context.getBean("service");
+		StudentService service = context.getBean(StudentService.class);
 		System.out.println(service.selectStudentById(2));
 	}
 	
 	@Test
 	public void testInsertStudetn(){
-		StudentService service = (StudentService)context.getBean("service");
+		StudentService service = context.getBean(StudentService.class);
 		Student s = new Student();
 		s.setName("liudong");
 		s.setBrithday(new Date());

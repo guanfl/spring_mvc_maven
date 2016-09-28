@@ -15,13 +15,16 @@
 
 	<!-- <context:property-placeholder location="classpath:jdbc.properties" 
 		ignore-resource-not-found="true" file-encoding="UTF-8" ignore-unresolvable="true"/> -->
-
+	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties" />
 	</bean>
 	<!-- 配置自动扫描 注册Bean -->
 	<context:component-scan base-package="com.spring.mvc" />
+
+	<!-- cglib代理 且开启 aop注解 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close" init-method="init" lazy-init="true">
@@ -127,15 +130,21 @@
 		<property name="slaveMethodStart" value="select,query,find,get"/>
 	</bean>
 	
+	<bean id="cacheAspect" class="com.spring.mvc.aspect.AnnotationAspect"/>
+	
+	<!-- 事务与自己用到切面的顺序 order(越小优先级越高) -->
 	<aop:config>
-		<!-- 定义切面，所有的service的所有方法 
-		<aop:pointcut id="txPointcut" expression="execution(* com.spring.mvc.service.*.*(..))" />-->
-		<aop:pointcut id="rwPointcut" expression="execution(* com.spring.mvc.dao.*.*(..))" />
+		<!-- 定义切面，所有的service的所有方法 -->
+		<aop:pointcut id="txPointcut" expression="execution(* com.spring.mvc.service.*.*(..))" />
 		<!-- 应用事务策略到Service切面 -->
-		<aop:advisor pointcut="execution(* com.spring.mvc.service.*.*(..))" advice-ref="txAdvice"/>
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" order="1"/>
 		<!-- 将切面应用到自定义的切面处理器上，-9999保证该切面优先级最高执行 -->
-		<aop:aspect ref="dataSourceAspect"><!-- order="-9999" -->
-			<aop:before method="before" pointcut-ref="rwPointcut" />
+		<aop:aspect ref="dataSourceAspect" order="-1"><!-- order="-9999" -->
+			<aop:before method="before" pointcut-ref="txPointcut" />
+		</aop:aspect>
+		<!-- 切面在事务之后执行 -->
+		<aop:aspect ref="cacheAspect" order="2">
+			<aop:around method="aroundMethod" pointcut="execution(* com.spring.mvc.service.StudentService.*(..))"/>
 		</aop:aspect>
 	</aop:config>
 	
