@@ -15,8 +15,17 @@ import com.spring.mvc.entity.Student;
 @Repository
 public interface StudentDao {
 	public Student selectByID(int id);
+	
+	/**
+	 * 关联查询
+	 * @param id
+	 * @return
+	 */
+	public List<Student> selectLinkedInfo();
+	
 	public List<Student> selectAllStu();
 	public void deleteStudentById(int id);
 	public void edit(Student stu);
 	public void insertStudent(Student stu);
+	
 }

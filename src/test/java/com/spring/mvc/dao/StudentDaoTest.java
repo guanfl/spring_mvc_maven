@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.mvc.entity.Student;
+import com.spring.mvc.entity.linked.StudentLinked;
 import com.spring.mvc.service.StudentService;
 
 public class StudentDaoTest {
@@ -44,5 +45,15 @@ public class StudentDaoTest {
 		s.setBrithday(new Date());
 		s.setScore(99.0);
 		service.insertStudent(s);
+	}
+	
+	@Test
+	public void testSelectLinkedInfo(){
+	    StudentDao dao = context.getBean(StudentDao.class);
+	    List<Student> linkedStus = dao.selectLinkedInfo();
+	    for(Student s : linkedStus){
+	        StudentLinked temp = (StudentLinked)s;
+	        System.out.println(temp + ">>>>>>>>>>>>>>>>>" + temp.getChinaArea().toString());
+	    }
 	}
 }

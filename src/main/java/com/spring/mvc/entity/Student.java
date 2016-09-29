@@ -7,8 +7,6 @@
 package com.spring.mvc.entity;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Student implements Serializable{
@@ -18,8 +16,17 @@ public class Student implements Serializable{
 	private String name;
 	private Date brithday;
 	private double score;
+	private String area;
+	
+	public String getArea() {
+        return area;
+    }
 
-	public int getId() {
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public int getId() {
 		return id;
 	}
 
@@ -51,10 +58,8 @@ public class Student implements Serializable{
 		this.score = score;
 	}
 
-	@Override
-	public String toString() {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return "User [id=" + id + ", name=" + name + ", brithday=" + df.format(brithday) + ", score=" + score + "]";
-	}
-	
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + ", brithday=" + brithday + ", score=" + score + ", area=" + area + "]";
+    }
 }
