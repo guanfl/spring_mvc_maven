@@ -17,6 +17,7 @@ import org.springframework.core.io.Resource;
 /**Spring Core Resource接口测试*/
 public class SpringResource {
 
+    @SuppressWarnings("unused")
     @Test
     public void testSpringResouce() {
         // FileSystemResouce
@@ -29,6 +30,12 @@ public class SpringResource {
             Resource res2 = new ClassPathResource("log4j.properties");
 
             InputStream inputStream1 = res1.getInputStream();
+            Object obj = null;
+            try {
+                org.springframework.util.Assert.notNull(obj,"shisih");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             InputStream inputStream2 = res2.getInputStream();
             
             String fileName1 = res1.getFilename();
