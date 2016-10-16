@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import com.spring.mvc.web.version.CustomRequestMappingHandlerMapping;
 
-@Configuration
+//@Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
 
     @Override

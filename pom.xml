@@ -11,13 +11,14 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.1.7.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -83,39 +84,39 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- spring依赖包 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- spring test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- Aop相关 -->
 		<dependency>
@@ -136,18 +137,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- spring mvc包 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.0.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- 日志相关的jar -->
 		<dependency>
@@ -233,6 +234,7 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.18</version>
 		</dependency>
+
 		<!-- swagger-springmvc -->
 		<dependency>
 			<groupId>com.mangofactory</groupId>
@@ -270,11 +272,14 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.4.4</version>
 		</dependency>
+
+		<!-- fast json -->
 		<dependency>
-			<groupId>com.fasterxml</groupId>
-			<artifactId>classmate</artifactId>
-			<version>1.1.0</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.17</version>
 		</dependency>
+		
 		<!-- 添加joda-time支持 -->
 		<dependency>
 			<groupId>joda-time</groupId>

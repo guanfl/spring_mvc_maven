@@ -16,7 +16,7 @@
 
 		<!--数据库连接URL 用户名 密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://10.90.3.105/test?useUnicode=true&amp;characterEncoding=UTF-8" userId="guanfl" password="123456">
+			connectionURL="jdbc:mysql://127.0.0.1/test?useUnicode=true&amp;characterEncoding=UTF-8" userId="root" password="root">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -30,8 +30,7 @@
 		</javaModelGenerator>
 		
 		<!--生成映射文件的包名和位置 -->
-		<sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
-			<property name="enableSubPackages" value="true" />
+		<sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources"> <property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!--生成Dao包名和位置 -->
@@ -40,7 +39,7 @@
 		</javaClientGenerator>
 
 		<!--指定要生成哪些表 -->
-		<table tableName="t_user" domainObjectName="IUser"
+		<table tableName="user" domainObjectName="UserNew"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

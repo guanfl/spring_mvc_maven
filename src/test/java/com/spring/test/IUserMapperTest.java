@@ -20,7 +20,7 @@ import com.spring.mvc.dao.IUserMapper;
 import com.spring.mvc.entity.IUser;
 import com.spring.mvc.service.IUserService;
 
-public class IUserMapperTest extends BaseTest<IUserMapperTest> {
+public class IUserMapperTest extends BaseTest {
     @Autowired
     private IUserMapper mapper;
     @Autowired
