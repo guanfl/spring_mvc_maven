@@ -4,7 +4,7 @@
 * Copyrights 2016 guanfl All rights reserved.
 * Email : guanfl@163.com
 */
-package com.spring.mvc.web.controller;
+package com.spring.mvc.web;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

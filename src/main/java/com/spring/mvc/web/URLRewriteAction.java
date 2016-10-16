@@ -5,7 +5,7 @@
 * Email : guanfl@ifeng.com
 * Copyright 2016 ifeng.com All Rights Reserved
 */
-package com.spring.mvc.web.controller;
+package com.spring.mvc.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
