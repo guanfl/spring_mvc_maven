@@ -2,13 +2,23 @@ package com.spring.mvc.entity;
 
 import java.util.Date;
 
-public class UserNew {
-    private Integer id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class UserNew {
+    @NotNull(message="{USER_ID_IS_NULL}")
+    private Integer id;
+    //使用EL表达式来取值
+    @NotEmpty(message = "{user.name.null}")
+    @Length(min = 5, max = 20, message = "{user.name.length.illegal}") 
+    @Pattern(regexp = "[a-zA-Z]{5,20}", message = "{user.name.illegal}") 
     private String name;
 
     private String password;
-
+    
     private Date createtime;
 
     public Integer getId() {
