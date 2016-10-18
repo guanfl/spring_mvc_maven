@@ -52,6 +52,8 @@
 	<mvc:annotation-driven validator="validator">
 		<mvc:message-converters>
 			<bean class="com.spring.mvc.web.message.CallbackMappingJackson2HttpMessageConverter"/>	<!-- callback json message converter -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter"/> 			   <!-- String converter -->
+			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"/>	   <!-- xml converter need oxm-->
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
