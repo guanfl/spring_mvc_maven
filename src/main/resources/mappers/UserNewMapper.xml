@@ -11,12 +11,29 @@
   <sql id="Base_Column_List" >
     id, name, password, createtime
   </sql>
+  
+  <resultMap id="UserGroupResultMap" type="com.spring.mvc.entity.linked.UserNewLinked" extends="BaseResultMap">
+  	<collection property="groups" javaType="java.util.List" ofType="com.spring.mvc.entity.Group">
+  		<id column="gid" property="id" jdbcType="INTEGER" />
+	    <result column="gName" property="name" jdbcType="VARCHAR" />
+	    <result column="gCreateTime" property="createdate" jdbcType="TIMESTAMP" />
+	    <result column="gStatus" property="state" jdbcType="INTEGER" />
+  	</collection>
+  </resultMap>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="queryUserAndGroups" parameterType="com.spring.mvc.entity.UserNew" resultMap="UserGroupResultMap">
+  	select u.*,gi.id gid,gi.name gName,gi.createdate gCreateTime,gi.state gStatus
+	from user u
+	left join user_group ug on u.id = ug.user_id
+	left join group_info gi on ug.group_id=gi.id
+	where u.id=#{id}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

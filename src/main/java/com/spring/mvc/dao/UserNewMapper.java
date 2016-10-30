@@ -10,4 +10,6 @@ public interface UserNewMapper {
     UserNew selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(UserNew record);
+    
+    UserNew queryUserAndGroups(UserNew paramUser);
 }

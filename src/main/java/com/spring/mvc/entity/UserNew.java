@@ -5,18 +5,20 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Value;
 
 @XmlRootElement(name="usernew")
 public class UserNew {
+    //@NotNull(message="#{message['USER_ID_IS_NULL']}")
     @NotNull(message="{USER_ID_IS_NULL}")
     private Integer id;
     //使用EL表达式来取值
     @NotEmpty(message = "{user.name.null}")
-    @Length(min = 5, max = 20, message = "{user.name.length.illegal}") 
+    //@Length(min = 5, max = 20, message = "xxxxxxxxxxxxxxx") 
+    @Value("{user.name.length.illegal}")
     private String name;
-
+    @Value("{user.name.null}")
     private String password;
     
     private Date createtime;

@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,6 +34,9 @@ import com.spring.mvc.web.common.BaseController;
 public class UserNewController extends BaseController {
     @Autowired
     private UserNewService service;
+    //@Value("#{message['user.name.null']}")
+    @Value("{user.name.null}")
+    private String value;
     
     @ResponseBody
     @RequestMapping(value="{id}",method=RequestMethod.GET)
@@ -55,6 +59,7 @@ public class UserNewController extends BaseController {
             }
             return resultMap;
         }
+        System.out.println("=================" + value);
         return user;
     }
     
@@ -73,6 +78,7 @@ public class UserNewController extends BaseController {
             resultMap.put("errors", errorMsgList);
             return resultMap;
         }
+        System.out.println("=================" + value);
         return user;
     }
     

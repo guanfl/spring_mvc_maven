@@ -39,9 +39,17 @@
 		</javaClientGenerator>
 
 		<!--指定要生成哪些表 -->
-		<table tableName="user" domainObjectName="UserNew"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+<!-- 		<table tableName="user" domainObjectName="UserNew" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			enableDeleteByExample="false" enableSelectByExample="false" -->
+<!-- 			selectByExampleQueryId="false"></table> -->
+		<table tableName="group_info" domainObjectName="Group"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false"></table>
+		<table tableName="user_group" domainObjectName="UserGroup"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false"></table>
 	</context>
 </generatorConfiguration>

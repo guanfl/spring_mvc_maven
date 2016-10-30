@@ -34,7 +34,7 @@
 		<!-- 国际化信息所在的文件 -->
 		<property name="basenames">
 			<list>
-				<value>classpath:i18n/messages</value>
+				<value>classpath:i18n/</value>
 			</list>
 		</property>
 		<!-- 如果在国际化资源文件中找不到代码信息，就用这个代码作为名称 -->
