@@ -6,10 +6,15 @@
 */
 package com.spring.mvc.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,6 +60,14 @@ public class TestAction {
     @RequestMapping(value="/json",method=RequestMethod.GET)
     public Object returnJsonTest(){
         return mapper.selectAllIUsers();
+    }
+    
+    @ResponseBody
+    @RequestMapping(value="/code", method=RequestMethod.GET)
+    public ResponseEntity<Map<String,String>> testHttpStatusCode(){
+        Map<String,String> params = new HashMap<>();
+        params.put("msg", "return back world");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(params);
     }
     
     /**
