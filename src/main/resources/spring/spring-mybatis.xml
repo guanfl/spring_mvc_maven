@@ -75,16 +75,13 @@
 	<!-- 定义事务策略 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<!--定义查询方法都是只读的 -->
-			<tx:method name="query*" read-only="true" />
+			<tx:method name="query*" read-only="true" />         <!--定义查询方法都是只读的 -->
 			<tx:method name="find*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
-			<!-- 主库执行操作，事务传播行为定义为默认行为 -->
-			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />    <!-- 主库执行操作，事务传播行为定义为默认行为 -->
 			<tx:method name="update*" propagation="REQUIRED" />
 			<tx:method name="delete*" propagation="REQUIRED" />
-			<!--其他方法使用默认事务策略 -->
-			<tx:method name="*" />
+			<tx:method name="*" />                               <!--其他方法使用默认事务策略 -->
 		</tx:attributes>
 	</tx:advice>
 	
@@ -101,14 +98,13 @@
 	<!-- 事务与自己用到切面的顺序 order(越小优先级越高) -->
 	<aop:config>
 		<aop:pointcut id="txPointcut" expression="execution(* com.spring.mvc.service.*.*(..))" />
-		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" order="2"/>
-		<aop:aspect ref="dataSourceAspect" order="1">
-			<aop:before method="before" pointcut-ref="txPointcut" />
-		</aop:aspect>
-		
-		<aop:aspect ref="cacheAspect" order="-1">
-			<aop:before method="before" pointcut-ref="txPointcut"/>
-		</aop:aspect>
+        <!-- <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" order="2"/> -->   <!-- 应用事务切面 -->
+        <aop:aspect ref="dataSourceAspect" order="1">
+            <aop:before method="before" pointcut-ref="txPointcut" />
+        </aop:aspect>
+        <!-- <aop:aspect ref="cacheAspect" order="-1"> -->
+        <!-- <aop:before method="before" pointcut-ref="txPointcut"/> -->
+        <!-- </aop:aspect> -->
 	</aop:config>
 	
 	<!-- 配置sqlSessionTemplate -->
@@ -116,9 +112,10 @@
 	<!-- scope="prototype"> -->
 	<!-- <constructor-arg index="0" ref="sqlSessionFactory" /> -->
 	<!-- </bean> -->
-	<!-- MapperScannerConfigurer实际是在解析加载bean阶段，这时候设置sqlSessionFactory 会导致提前初始化一些类，这时候PropertyPlaceHolderConfigurer还没来得及替换定义中的变量 
-		， 导致把表达式当作字符串复制 org.apache.commons.dbcp.SQLNestedException: Cannot load JDBC 
-		driver class '${read.driverClassName} -->
+	<!-- MapperScannerConfigurer实际是在解析加载bean阶段，这时候设置sqlSessionFactory 会导致提前初始化一些类，-->
+    <!-- 这时候PropertyPlaceHolderConfigurer还没来得及替换定义中的变量 -->
+    <!-- ， 导致把表达式当作字符串复制 org.apache.commons.dbcp.SQLNestedException: Cannot load JDBC -->
+    <!-- driver class '${read.driverClassName} -->
 	<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" /> -->
 
 </beans>

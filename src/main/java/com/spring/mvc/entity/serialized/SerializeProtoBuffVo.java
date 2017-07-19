@@ -45,7 +45,7 @@ public class SerializeProtoBuffVo {
 
         //反序列化
         try {
-            UserVoProto.UserVo reverseVO = vo.parseFrom(userbytes);
+            UserVoProto.UserVo reverseVO = UserVoProto.UserVo.parseFrom(userbytes);
             System.out.println("\n\n" + reverseVO);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

@@ -11,7 +11,7 @@ import org.junit.Test;
 public class TestNull {
     @Test
     public void testNull(){
-        String s = new String();
+        //String s = new String();
         //System.out.println(s == "s");
         
         Integer integer = null;

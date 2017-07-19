@@ -14,21 +14,22 @@
 		<property name="order" value="0"/>
 	</bean> 
 	<!-- mvc:annotaion 替代了 -->
-	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >
-		<property name="messageConverters">
-			<list>
-				<bean class="com.spring.mvc.web.message.CallbackMappingJackson2HttpMessageConverter"/>	callback json message converter
-			</list>
-		</property>
-	</bean> -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >-->
+    <!-- <property name="messageConverters"> -->
+    <!-- <list> -->
+    <!-- <bean class="com.spring.mvc.web.message.CallbackMappingJackson2HttpMessageConverter"/> -->
+    <!-- callback json message converter -->
+    <!-- </list> -->
+    <!-- </property> -->
+    <!-- </bean> -->
 	
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+    
 	<!-- springmvc 添加validation and internationalization (验证和国际化)-->
-	
 	<!-- 国际化ResourceBundle -->
 	<bean id="resourceBundleMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<!-- 国际化信息所在的文件 -->
@@ -48,7 +49,7 @@
 		<property name="validationMessageSource" ref="resourceBundleMessageSource" />
 	</bean>
 	
-	<!-- 开启SpringMVC注解模式 ,开启验证并支持国际化-->
+	<!-- 开启SpringMVC注解模式,开启验证并支持国际化-->
 	<mvc:annotation-driven validator="validator">
 		<mvc:message-converters>
 			<bean class="com.spring.mvc.web.message.CallbackMappingJackson2HttpMessageConverter"/>	<!-- callback json message converter -->
@@ -63,7 +64,6 @@
 	<mvc:annotation-driven/>
 	<mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/"/>
 	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />-->
-	
 	<!-- 静态资源访问（不拦截此目录下的东西的访问） -->
 	<!-- <mvc:resources location="/js/" mapping="/js/**" /> -->
 	
@@ -79,17 +79,17 @@
 		<property name="order" value="1" />
 	</bean> -->
 
-	<!-- <bean id="excelViewResolver" class="com.spring.mvc.views.ExcelView"/> 
-		<bean id="pdfViewResolver" class="com.spring.mvc.views.PDFView"/> -->
+    <!-- <bean id="excelViewResolver" class="com.spring.mvc.views.ExcelView"/> -->
+    <!-- <bean id="pdfViewResolver" class="com.spring.mvc.views.PDFView"/> -->
 
-	<!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="/*.xls">excelViewResolver</prop>
-                <prop key="/*.pdf">pdfViewResolver</prop>
-                <prop key="/*.jsp">jspViewResolver</prop>
-            </props>
-        </property>
-    </bean> -->
-	
+	<!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> -->
+    <!-- <property name="mappings"> -->
+    <!-- <props> -->
+    <!-- <prop key="/*.xls">excelViewResolver</prop> -->
+    <!-- <prop key="/*.pdf">pdfViewResolver</prop> -->
+    <!-- <prop key="/*.jsp">jspViewResolver</prop> -->
+    <!-- </props> -->
+    <!-- </property> -->
+    <!-- </bean> -->
+    
 </beans>

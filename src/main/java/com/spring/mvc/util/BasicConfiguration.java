@@ -31,7 +31,8 @@ public class BasicConfiguration {
 	private void reconfig(){
 		props = new Properties();
 		InputStream in = null;
-		String userPath = System.getProperty("user.dir");
+		@SuppressWarnings("unused")
+        String userPath = System.getProperty("user.dir");
 		try {
 		    //System.out.println(userPath);
 			in = Thread.currentThread().getContextClassLoader().getResourceAsStream( "/config.properties");

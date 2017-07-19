@@ -135,7 +135,6 @@ public class RequestValidateInterceptor implements HandlerInterceptor {
      * @param request
      * @return
      */
-    @SuppressWarnings("unchecked")
     private Map<String,String> getParameterMap(HttpServletRequest request){
         Map<String,String> paramsMap = new HashMap<>();
         

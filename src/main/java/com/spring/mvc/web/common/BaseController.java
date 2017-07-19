@@ -75,16 +75,6 @@ public abstract class BaseController {
 		    logger.error("throws exceptions : ", ex.getMessage());
 		    modelMap.put("msg", ex.getMessage());
 		}
-		/*} else if (ex instanceof IllegalArgumentException) {
-			new IllegalParameterException(ex.getMessage()).handler(modelMap);
-		} else if (ex instanceof UnauthorizedException) {
-			setModelMap(modelMap, HttpStatus.FORBIDDEN);
-		} else {*/
-		//}
-		/*request.setAttribute("msg", modelMap.get("msg"));
-		byte[] bytes = JSON.toJSONBytes(modelMap, SerializerFeature.DisableCircularReferenceDetect);
-		response.getOutputStream().write(bytes);*/
-		
 		setModelMap(modelMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		response.setContentType("application/json;charset=UTF-8");
 		MAPPER.writeValue(response.getOutputStream(), modelMap);

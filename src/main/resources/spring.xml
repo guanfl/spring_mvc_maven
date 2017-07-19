@@ -10,8 +10,8 @@
 		<property name="locations" >
 			<list>
 				<value>classpath:config/jdbc.properties</value>
-<!-- 				<value>classpath:i18n/messages_zh.properties</value> -->
-<!-- 				<value>classpath:i18n/messages_en.properties</value> -->
+				<value>classpath:i18n/messages_zh.properties</value>
+				<value>classpath:i18n/messages_en.properties</value>
 			</list>
 		</property>
 	</bean>
